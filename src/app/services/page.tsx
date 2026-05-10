@@ -110,12 +110,7 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          {/* Navigation Dots */}
-          <div className="absolute right-12 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20">
-             {SERVICES_DATA.map((_, i) => (
-               <div key={i} className={`w-1 rounded-full transition-all duration-700 ${i === activeIndex ? "bg-white h-16" : "bg-white/20 h-6"}`} />
-             ))}
-          </div>
+
 
           {/* Back to Home Indicator */}
           <div className="absolute bottom-12 left-8 md:left-16 z-20">
