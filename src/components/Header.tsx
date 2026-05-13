@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -24,15 +25,19 @@ export default function Header() {
         }`}
       >
         {/* Logo - Updated to THE DASH MEDIA */}
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="relative z-50 cursor-pointer flex items-center gap-4"
-        >
-          <span className="text-xl md:text-2xl font-black tracking-tighter uppercase text-white mix-blend-difference">
-            THE DASH MEDIA
-          </span>
-        </motion.div>
+        <Link href="/">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="relative z-50 cursor-pointer flex items-center gap-4"
+          >
+            <img 
+              src="/logo-transparent.png" 
+              alt="Dash Media Logo" 
+              className="h-8 md:h-12 w-auto object-contain transition-transform duration-500 hover:scale-105" 
+            />
+          </motion.div>
+        </Link>
 
         {/* Menu Toggle */}
         <motion.button
@@ -89,7 +94,7 @@ export default function Header() {
                   }}
                   onMouseEnter={() => setHoveredIndex(i)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className="text-4xl md:text-6xl font-bold tracking-tight transition-all duration-300 uppercase"
+                  className="text-3xl md:text-6xl font-black tracking-tighter transition-all duration-300 uppercase leading-none"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item}
@@ -99,7 +104,6 @@ export default function Header() {
 
             {/* Bottom Info - Updated to THE DASH MEDIA */}
             <div className="absolute bottom-12 flex flex-col items-center gap-4 text-xs font-mono uppercase tracking-[0.4em] text-gray-500">
-               <span>New York / London / San Francisco</span>
                <span className="opacity-50">© 2026 THE DASH MEDIA</span>
             </div>
           </motion.div>

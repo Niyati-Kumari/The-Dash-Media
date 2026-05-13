@@ -33,11 +33,16 @@ const SHOWCASE_DATA = [
 ];
 
 const BRANDS = [
-  { name: "IMEDI.HEALTH", logo: "/brands/imedi_health.png" },
-  { name: "PURBI", logo: "/brands/purbi.png" },
-  { name: "Thrive", logo: "/brands/thrive.png" },
-  { name: "AP Talent", logo: "/brands/ap_talent.png" },
-  { name: "Pickleberry", logo: "/brands/pickleberry.png" }
+  { name: "PURBI", logo: "/brands/1.png" },
+  { name: "IMEDI.HEALTH", logo: "/brands/2.png" },
+  { name: "Thrive", logo: "/brands/3.png" },
+  { name: "Pickleberry", logo: "/brands/4.png" },
+  { name: "AP Talent", logo: "/brands/5.png" },
+  { name: "Brand 6", logo: "/brands/ap_talent.png" },
+  { name: "Brand 7", logo: "/brands/imedi_health.png" },
+  { name: "Brand 8", logo: "/brands/pickleberry.png" },
+  { name: "Brand 9", logo: "/brands/purbi.png" },
+  { name: "Brand 10", logo: "/brands/thrive.png" }
 ];
 
 const REVIEWS = [
@@ -94,18 +99,18 @@ export default function HomeClient() {
       
       <HeroSequence />
 
-      <section id="about" className="relative z-20 w-full bg-white text-black py-16 md:py-48 px-6 md:px-16 shadow-[0_-50px_100px_rgba(0,0,0,0.05)]">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+      <section id="about" className="relative z-20 w-full bg-white text-black py-24 md:py-48 px-6 md:px-16 shadow-[0_-50px_100px_rgba(0,0,0,0.05)]">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           {/* Left Side: Content */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-6 flex flex-col justify-center">
             <motion.div 
               initial={{ opacity: 0, x: -20 }} 
               whileInView={{ opacity: 1, x: 0 }} 
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-black/5 border border-black/10 rounded-full mb-6 md:mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-black/5 border border-black/10 rounded-full mb-8 w-fit"
             >
               <div className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
-              <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-blue-600">About The Dash Media</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-600">The Dash Media Agency</span>
             </motion.div>
 
             <motion.h2 
@@ -113,7 +118,7 @@ export default function HomeClient() {
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
               transition={{ delay: 0.1 }}
-              className="text-3xl md:text-6xl font-black leading-[1.1] md:leading-[0.9] tracking-tighter uppercase mb-8 md:mb-12"
+              className="text-4xl md:text-7xl font-black leading-[0.95] tracking-tighter uppercase mb-10"
             >
               Turning Brand <br className="hidden md:block" />Ideas Into <br className="hidden md:block" />Experiences.
             </motion.h2>
@@ -125,22 +130,22 @@ export default function HomeClient() {
               transition={{ delay: 0.2 }}
               className="space-y-6 md:space-y-8 max-w-xl"
             >
-              <p className="text-base md:text-xl text-black/60 leading-relaxed font-medium">
+              <p className="text-lg md:text-2xl text-black/60 leading-tight font-medium">
                 The Dash Media (TDM) is a premier creative media and digital marketing agency dedicated to elevating brand presence through strategic storytelling and innovative experiences.
               </p>
-              <p className="text-base md:text-xl text-black/60 leading-relaxed font-medium">
+              <p className="text-lg md:text-2xl text-black/60 leading-tight font-medium">
                 We bridge the gap between brands and their audiences through data-driven social strategies, influencer collaborations, and world-class event production.
               </p>
             </motion.div>
 
-            <div className="mt-10 md:mt-16 flex flex-wrap gap-4 md:gap-6">
-               <div className="px-6 py-4 md:px-8 md:py-6 bg-black/5 border border-black/10 rounded-2xl md:rounded-3xl">
-                  <h4 className="text-xl md:text-4xl font-black text-blue-600 mb-1">99.9%</h4>
-                  <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-black/40">Uptime Mindset</p>
+            <div className="mt-12 md:mt-20 flex flex-wrap gap-4 md:gap-8">
+               <div className="px-8 py-6 md:px-10 md:py-8 bg-black/5 border border-black/10 rounded-3xl">
+                  <h4 className="text-3xl md:text-5xl font-black text-blue-600 mb-1">99.9%</h4>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-black/40">Uptime Mindset</p>
                </div>
-               <div className="px-6 py-4 md:px-8 md:py-6 bg-black/5 border border-black/10 rounded-2xl md:rounded-3xl">
-                  <h4 className="text-xl md:text-4xl font-black text-black mb-1">PREMIUM</h4>
-                  <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-black/40">Digital Expertise</p>
+               <div className="px-8 py-6 md:px-10 md:py-8 bg-black/5 border border-black/10 rounded-3xl">
+                  <h4 className="text-3xl md:text-5xl font-black text-black mb-1">PREMIUM</h4>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-black/40">Digital Expertise</p>
                </div>
             </div>
           </div>
@@ -224,12 +229,12 @@ export default function HomeClient() {
            <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-end">
               <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-8 md:pt-12">
                 <div>
-                  <h4 className="text-2xl md:text-5xl font-black text-white mb-2 uppercase">100+</h4>
-                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/40">Brands Transformed</p>
+                  <h4 className="text-4xl md:text-6xl font-black text-white mb-2 uppercase tracking-tighter">100+</h4>
+                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/40">Brands Transformed</p>
                 </div>
                 <div>
-                  <h4 className="text-2xl md:text-5xl font-black text-white mb-2 uppercase">50+</h4>
-                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/40">Global Exhibitions</p>
+                  <h4 className="text-4xl md:text-6xl font-black text-white mb-2 uppercase tracking-tighter">50+</h4>
+                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/40">Global Exhibitions</p>
                 </div>
               </div>
               <div className="hidden md:flex flex-col gap-6 text-right">
@@ -399,7 +404,7 @@ function BrandsSection() {
     // 1s interval as requested for faster rotation
     const timer = setInterval(() => {
       setBrandIndex((prev) => (prev + 1) % BRANDS.length);
-    }, 1300); // 1.3s total cycle
+    }, 2500); // 2.5s for a more premium rotation speed
     
     return () => clearInterval(timer);
   }, [BRANDS.length]);
@@ -410,7 +415,7 @@ function BrandsSection() {
     <section className="relative h-screen w-full bg-black overflow-hidden flex flex-col items-center justify-center">
       <div className="absolute inset-0 z-0">
          <video ref={videoRef} autoPlay muted loop playsInline className="h-full w-full object-cover">
-            <source src="https://stream.mux.com/L9t5aENtwbzMguK0077TmYSC2zCLJPlmu/high.mp4" type="video/mp4" />
+            <source src="/brands-background.mp4" type="video/mp4" />
          </video>
          {/* Center mask to hide baked-in logos */}
          <div className="absolute inset-0 bg-black/30" />
@@ -508,8 +513,8 @@ function HeroSequence() {
     <section ref={containerRef} className="relative h-[200vh] w-full">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <motion.div style={{ scale, opacity }} className="absolute inset-0">
-          <AutoVideoLoop videos={HERO_VIDEOS} interval={1000} />
-          <div className="absolute inset-0 bg-black/40" />
+          <AutoVideoLoop videos={HERO_VIDEOS} interval={4000} />
+          <div className="absolute inset-0 bg-black/50" />
         </motion.div>
         <div className="relative z-10 h-full w-full flex flex-col justify-center items-center text-center px-6">
            <motion.div style={{ y: textY }}>
@@ -599,9 +604,9 @@ function VerticalShowcase() {
                       }} 
                       transition={{ duration: 0.6, ease: "easeOut" }}
                     >
-                      <h3 className="text-xs md:text-xl font-bold text-white/50 mb-3">0{item.id}</h3>
-                      <h2 className="text-3xl md:text-[4.5vw] font-black tracking-tighter leading-[0.9] uppercase mb-6">{item.title}</h2>
-                      <p className="text-sm md:text-lg text-white/70 max-w-md leading-relaxed">{item.description}</p>
+                      <h3 className="text-sm md:text-xl font-black text-blue-500 mb-4 tracking-[0.3em]">0{item.id} —</h3>
+                      <h2 className="text-4xl md:text-[5vw] font-black tracking-tighter leading-[0.85] uppercase mb-8">{item.title}</h2>
+                      <p className="text-base md:text-xl text-white/60 max-w-md leading-snug font-medium">{item.description}</p>
                     </motion.div>
                   </div>
                 ))}
