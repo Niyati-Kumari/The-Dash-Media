@@ -20,8 +20,8 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 flex items-center justify-between px-6 md:px-16 py-2 md:py-4 ${
-          isScrolled ? "bg-black/20 backdrop-blur-xl border-b border-white/5 py-2 md:py-3" : "bg-transparent"
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 flex items-center justify-between px-6 sm:px-10 lg:px-20 xl:px-24 py-3 md:py-5 ${
+          isScrolled ? "bg-black/20 backdrop-blur-xl border-b border-white/5 py-3 md:py-4" : "bg-transparent"
         }`}
       >
         {/* Logo - Updated to THE DASH MEDIA */}
@@ -34,7 +34,7 @@ export default function Header() {
             <img 
               src="/logo-transparent.png" 
               alt="Dash Media Logo" 
-              className="h-20 md:h-[100px] w-auto object-contain transition-transform duration-500 hover:scale-105" 
+              className="h-16 sm:h-20 md:h-[90px] lg:h-[100px] w-auto object-contain transition-transform duration-500 hover:scale-105" 
             />
           </motion.div>
         </Link>
@@ -76,7 +76,7 @@ export default function Header() {
             transition={{ duration: 0.6 }}
             className="fixed inset-0 z-40 bg-[#050505] text-white flex flex-col items-center justify-center px-8"
           >
-            <nav className="flex flex-col items-center gap-8 md:gap-12">
+            <nav className="flex flex-col items-center gap-6 sm:gap-8 md:gap-12">
               {["About", "Work", "Services", "Impact", "Careers", "Contact"].map((item, i) => (
                 <motion.a
                   key={item}
@@ -89,13 +89,13 @@ export default function Header() {
                     filter: hoveredIndex === i ? "drop-shadow(0 0 25px rgba(255,255,255,0.8))" : "drop-shadow(0 0 0px rgba(255,255,255,0))"
                   }}
                   transition={{ 
-                    y: { delay: 0.1 + i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                    y: { delay: 0.15 + i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
                     opacity: { duration: 0.3 },
                     scale: { duration: 0.3 }
                   }}
                   onMouseEnter={() => setHoveredIndex(i)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className="text-4xl md:text-6xl font-black tracking-tighter transition-colors uppercase leading-none"
+                  className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tighter transition-colors uppercase leading-none"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item}

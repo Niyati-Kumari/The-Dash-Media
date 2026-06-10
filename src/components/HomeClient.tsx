@@ -35,14 +35,14 @@ const SHOWCASE_DATA = [
 const BRANDS = [
   { name: "PURBI", logo: "/brands/1.png" },
   { name: "IMEDI.HEALTH", logo: "/brands/2.png" },
-  { name: "Thrive", logo: "/brands/3.png" },
+  { name: "Thrive", logo: "/brands/thrive_final.png" },
   { name: "Pickleberry", logo: "/brands/4.png" },
   { name: "AP Talent", logo: "/brands/5.png" },
   { name: "Brand 6", logo: "/brands/ap_talent.png" },
   { name: "Brand 7", logo: "/brands/imedi_health.png" },
   { name: "Brand 8", logo: "/brands/pickleberry.png" },
   { name: "Brand 9", logo: "/brands/purbi.png" },
-  { name: "Brand 10", logo: "/brands/thrive.png" }
+  { name: "Brand 10", logo: "/brands/thrive_final.png" }
 ];
 
 const REVIEWS = [
@@ -65,7 +65,7 @@ const REVIEWS = [
     role: "CEO",
     company: "Thrive",
     content: "Minimalist, powerful, and effective. The motion design and attention to detail they provided is exactly what our high-growth team needed.",
-    logo: "/brands/thrive.png"
+    logo: "/brands/thrive_final.png"
   },
   {
     name: "Aisha Vance",
@@ -99,8 +99,8 @@ export default function HomeClient() {
       
       <HeroSequence />
 
-      <section id="about" className="relative z-20 w-full bg-white text-black py-24 md:py-48 px-6 md:px-16 shadow-[0_-50px_100px_rgba(0,0,0,0.05)]">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+      <section id="about" className="relative z-20 w-full bg-white text-black py-24 md:py-48 px-6 sm:px-10 lg:px-20 xl:px-24 shadow-[0_-50px_100px_rgba(0,0,0,0.05)]">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
           {/* Left Side: Content */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             <motion.div 
@@ -118,7 +118,7 @@ export default function HomeClient() {
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-7xl font-black leading-[0.95] tracking-tighter uppercase mb-10"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] font-black leading-[0.9] tracking-tighter uppercase mb-10"
             >
               Turning Brand <br className="hidden md:block" />Ideas Into <br className="hidden md:block" />Experiences.
             </motion.h2>
@@ -182,13 +182,13 @@ export default function HomeClient() {
 
       <VerticalShowcase />
 
-      <section id="work" className="relative z-20 bg-white text-black px-6 md:px-16 py-16 md:py-48">
+      <section id="work" className="relative z-20 bg-white text-black px-6 sm:px-10 lg:px-20 xl:px-24 py-24 md:py-48">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-12 md:mb-20 text-center max-w-2xl mx-auto">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-4 md:mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase mb-4 md:mb-6"
             >
               Our Work
             </motion.h2>
@@ -214,7 +214,7 @@ export default function HomeClient() {
       </section>
 
       <section id="impact" className="relative h-[150dvh] md:h-[180dvh] w-full bg-black">
-        <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-between overflow-hidden px-6 md:px-16 pt-24 md:pt-40 pb-12 md:pb-24">
+        <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-between overflow-hidden px-6 sm:px-10 lg:px-20 xl:px-24 pt-24 md:pt-40 pb-12 md:pb-24">
            <AutoVideoLoop videos={[...HERO_VIDEOS].reverse()} interval={4000} opacity={0.5} />
            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
            
@@ -258,14 +258,14 @@ export default function HomeClient() {
       <BrandsSection />
       <ReviewsSection />
       <CareersSection onApply={() => setIsFormOpen(true)} />
-      <footer id="contact" className="relative z-20 bg-black text-white px-6 md:px-16 pt-24 pb-8 md:pt-32 md:pb-10 border-t border-white/10">
+      <footer id="contact" className="relative z-20 bg-black text-white px-6 sm:px-10 lg:px-20 xl:px-24 pt-24 pb-8 md:pt-32 md:pb-10 border-t border-white/10">
         <div className="relative z-10 max-w-[1400px] mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
             <div className="flex flex-col gap-8 md:gap-12">
               <motion.h2 
                 initial={{ opacity: 0, y: 30 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
-                className="text-4xl md:text-[4.5vw] font-black tracking-tighter leading-[0.9] uppercase flex flex-col gap-1 md:gap-2"
+                className="text-[12vw] sm:text-5xl md:text-[4.5vw] font-black tracking-tighter leading-[0.85] uppercase flex flex-col gap-1 md:gap-2"
               >
                 <span className="text-white/20 hover:text-white transition-colors duration-700 cursor-default">LET'S</span>
                 <span className="text-white/50 hover:text-white transition-colors duration-700 cursor-default">CREATE THE</span>
@@ -590,7 +590,7 @@ function HeroSequence() {
         </motion.div>
         <div className="relative z-10 h-full w-full flex flex-col justify-center items-center text-center px-6">
            <motion.div style={{ y: textY }}>
-             <h1 className="text-[16vw] md:text-[9vw] lg:text-[7vw] font-black tracking-tighter leading-tight uppercase mix-blend-overlay">
+             <h1 className="text-[18vw] sm:text-[14vw] md:text-[10vw] lg:text-[8vw] font-black tracking-tighter leading-[0.85] uppercase mix-blend-overlay">
                THE <br className="md:hidden" /> DASH <br className="md:hidden" /> MEDIA
              </h1>
              <p className="text-[10px] md:text-sm lg:text-lg font-bold tracking-[0.4em] uppercase mt-6 text-white/60">Lead by Design</p>
@@ -676,7 +676,7 @@ function VerticalShowcase() {
           </AnimatePresence>
         </div>
         <div className="relative z-10 h-full w-full flex items-center justify-center">
-          <div className="max-w-[1400px] w-full px-6 md:px-16 h-[100dvh] overflow-hidden">
+          <div className="max-w-[1400px] w-full px-6 sm:px-10 lg:px-20 xl:px-24 h-[100dvh] overflow-hidden">
              <motion.div style={{ y: smoothTextY }} className="flex flex-col h-[300dvh]">
                 {SHOWCASE_DATA.map((item, i) => (
                   <div key={item.id} className="h-[100dvh] flex flex-col justify-center">
@@ -690,7 +690,7 @@ function VerticalShowcase() {
                       transition={{ duration: 0.6, ease: "easeOut" }}
                     >
                       <h3 className="text-sm md:text-xl font-black text-blue-500 mb-4 tracking-[0.3em]">0{item.id} —</h3>
-                      <h2 className="text-4xl md:text-[5vw] font-black tracking-tighter leading-[0.85] uppercase mb-8">{item.title}</h2>
+                      <h2 className="text-[11vw] sm:text-6xl md:text-[5vw] font-black tracking-tighter leading-[0.85] uppercase mb-6 sm:mb-8">{item.title}</h2>
                       <p className="text-base md:text-xl text-white/60 max-w-md leading-snug font-medium">{item.description}</p>
                     </motion.div>
                   </div>
@@ -743,7 +743,7 @@ function CareersSection({ onApply }: { onApply: () => void }) {
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-transparent to-black/90 z-1" />
       
-      <div className="relative z-10 w-full px-6 md:px-16 py-24 md:py-48">
+      <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 xl:px-24 py-24 md:py-48">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-center">
           <div className="lg:col-span-6">
             <div className="flex items-center gap-3 mb-6 md:mb-10">
@@ -755,7 +755,7 @@ function CareersSection({ onApply }: { onApply: () => void }) {
               initial={{ opacity: 0, y: 30 }} 
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
-              className="text-5xl md:text-[5vw] font-black leading-[0.9] tracking-tighter uppercase mb-8 md:mb-12 text-white"
+              className="text-[12vw] sm:text-6xl md:text-[5vw] font-black leading-[0.85] tracking-tighter uppercase mb-8 md:mb-12 text-white"
             >
               Building <br />the next <br />generation.
             </motion.h2>
