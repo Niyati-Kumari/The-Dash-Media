@@ -213,46 +213,44 @@ export default function HomeClient() {
         </div>
       </section>
 
-      <section id="impact" className="relative h-[150dvh] md:h-[180dvh] w-full bg-black">
-        <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-between overflow-hidden px-6 sm:px-10 lg:px-20 xl:px-24 pt-24 md:pt-40 pb-12 md:pb-24">
-           <AutoVideoLoop videos={[...HERO_VIDEOS].reverse()} interval={4000} opacity={0.5} />
-           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-           
-           {/* Top Left: Main Narrative */}
-           <div className="relative z-10 max-w-2xl">
-              <motion.h2 initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false }} className="text-base sm:text-xl md:text-[2.2vw] font-bold leading-snug tracking-tight text-white">
-                We&apos;ve helped our partners win their place in the hands, homes, and hearts of millions— <span className="text-white/30">combining strategic storytelling and design to realize the unprecedented.</span>
-              </motion.h2>
-           </div>
+      <section id="impact" className="relative min-h-[100dvh] w-full bg-black flex flex-col justify-between overflow-hidden px-6 sm:px-10 lg:px-20 xl:px-24 pt-24 md:pt-40 pb-12 md:pb-24">
+         <AutoVideoLoop videos={[...HERO_VIDEOS].reverse()} interval={4000} opacity={0.5} />
+         <div className="absolute inset-0 z-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
+         
+         {/* Top Left: Main Narrative */}
+         <div className="relative z-10 max-w-2xl">
+            <motion.h2 initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false }} className="text-base sm:text-xl md:text-[2.2vw] font-bold leading-snug tracking-tight text-white">
+              We&apos;ve helped our partners win their place in the hands, homes, and hearts of millions— <span className="text-white/30">combining strategic storytelling and design to realize the unprecedented.</span>
+            </motion.h2>
+         </div>
 
-           {/* Bottom Content: Stats & Expertise */}
-           <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 items-end">
-              <div className="grid grid-cols-2 gap-6 border-t border-white/10 pt-8 md:pt-12">
-                <div>
-                  <h4 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-2 uppercase tracking-tighter">100+</h4>
-                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/40">Brands Transformed</p>
-                </div>
-                <div>
-                  <h4 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-2 uppercase tracking-tighter">50+</h4>
-                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/40">Global Exhibitions</p>
-                </div>
+         {/* Bottom Content: Stats & Expertise */}
+         <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 items-end">
+            <div className="grid grid-cols-2 gap-6 border-t border-white/10 pt-8 md:pt-12">
+              <div>
+                <h4 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-2 uppercase tracking-tighter">100+</h4>
+                <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/40">Brands Transformed</p>
               </div>
-              <div className="hidden md:flex flex-col gap-6 text-right">
-                <div className="space-y-4">
-                  <p className="text-sm font-bold uppercase tracking-[0.3em] text-blue-500">Core Expertise</p>
-                  <ul className="space-y-2 text-white/60 font-medium text-lg">
-                    <li>Luxury Event Production</li>
-                    <li>Influencer Marketing</li>
-                    <li>Digital Media Strategy</li>
-                    <li>Cinematic Storytelling</li>
-                  </ul>
-                </div>
-                <div className="mt-8">
-                  <p className="text-[10px] font-mono text-white/20 uppercase tracking-[0.5em]">TDM / GLOBAL CREATIVE NETWORK</p>
-                </div>
+              <div>
+                <h4 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-2 uppercase tracking-tighter">50+</h4>
+                <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/40">Global Exhibitions</p>
               </div>
-           </div>
-        </div>
+            </div>
+            <div className="hidden md:flex flex-col gap-6 text-right">
+              <div className="space-y-4">
+                <p className="text-sm font-bold uppercase tracking-[0.3em] text-blue-500">Core Expertise</p>
+                <ul className="space-y-2 text-white/60 font-medium text-lg">
+                  <li>Luxury Event Production</li>
+                  <li>Influencer Marketing</li>
+                  <li>Digital Media Strategy</li>
+                  <li>Cinematic Storytelling</li>
+                </ul>
+              </div>
+              <div className="mt-8">
+                <p className="text-[10px] font-mono text-white/20 uppercase tracking-[0.5em]">TDM / GLOBAL CREATIVE NETWORK</p>
+              </div>
+            </div>
+         </div>
       </section>
 
       <BrandsSection />
@@ -576,39 +574,34 @@ function FormInput({ label, name, type = "text", required = false }: { label: st
 
 function HeroSequence() {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
-  const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 150]);
 
   return (
-    <section ref={containerRef} className="relative h-[200dvh] w-full">
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
-        <motion.div style={{ scale, opacity }} className="absolute inset-0">
-          <AutoVideoLoop videos={HERO_VIDEOS} interval={4000} />
-          <div className="absolute inset-0 bg-black/50" />
-        </motion.div>
-        <div className="relative z-10 h-full w-full flex flex-col justify-center items-center text-center px-6">
-           <motion.div style={{ y: textY }}>
-             <h1 className="text-[18vw] sm:text-[14vw] md:text-[10vw] lg:text-[8vw] font-black tracking-tighter leading-[0.85] uppercase mix-blend-overlay">
-               THE <br className="md:hidden" /> DASH <br className="md:hidden" /> MEDIA
-             </h1>
-             <p className="text-[10px] md:text-sm lg:text-lg font-bold tracking-[0.4em] uppercase mt-6 text-white/60">Lead by Design</p>
-           </motion.div>
-        </div>
-        
-        {/* Scroll Indicator */}
+    <section ref={containerRef} className="relative h-[100dvh] w-full overflow-hidden">
+      <motion.div style={{ scale, opacity }} className="absolute inset-0 z-0">
+        <AutoVideoLoop videos={HERO_VIDEOS} interval={4000} />
+        <div className="absolute inset-0 bg-black/50" />
+      </motion.div>
+      <div className="relative z-10 h-full w-full flex flex-col justify-center items-center text-center px-6">
+         <motion.div style={{ y: textY }}>
+           <h1 className="text-[18vw] sm:text-[14vw] md:text-[10vw] lg:text-[8vw] font-black tracking-tighter leading-[0.85] uppercase text-white drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+             THE <br className="md:hidden" /> DASH <br className="md:hidden" /> MEDIA
+           </h1>
+           <p className="text-[10px] md:text-sm lg:text-lg font-bold tracking-[0.4em] uppercase mt-6 text-white/90 drop-shadow-md">Lead by Design</p>
+         </motion.div>
+      </div>
+      
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none z-20">
+        <span className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-bold">Scroll</span>
         <motion.div 
-          style={{ opacity }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
-        >
-          <span className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-bold">Scroll</span>
-          <motion.div 
-            animate={{ y: [0, 8, 0] }} 
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent"
-          />
-        </motion.div>
+          animate={{ y: [0, 8, 0] }} 
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent"
+        />
       </div>
     </section>
   );
@@ -623,110 +616,91 @@ function AutoVideoLoop({ videos, interval, opacity = 1 }: { videos: string[], in
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden">
-      <AnimatePresence mode="popLayout">
+      {videos.map((video, i) => (
         <motion.div 
-          key={videos[index]} 
-          initial={{ opacity: 0, scale: 1 }} 
-          animate={{ opacity, scale: 1.1 }} 
-          exit={{ opacity: 0, scale: 1.2 }} 
+          key={video} 
+          initial={{ opacity: i === index ? opacity : 0, scale: i === index ? 1.1 : 1 }}
+          animate={{ opacity: i === index ? opacity : 0, scale: i === index ? 1.1 : 1 }} 
           transition={{ 
             opacity: { duration: 1.5, ease: "easeInOut" },
             scale: { duration: interval / 1000, ease: "linear" }
           }} 
           className="absolute inset-0 w-full h-full"
+          style={{ pointerEvents: i === index ? "auto" : "none" }}
         >
           <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-            <source src={videos[index]} type="video/mp4" />
+            <source src={video} type="video/mp4" />
           </video>
         </motion.div>
-      </AnimatePresence>
+      ))}
     </div>
   );
 }
 
 function VerticalShowcase() {
-  const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: targetRef, offset: ["start start", "end end"] });
-  const [activeIndex, setActiveIndex] = useState(0);
-  
-  useEffect(() => {
-    return scrollYProgress.onChange((v) => {
-      const zones = SHOWCASE_DATA.length;
-      const index = Math.min(zones - 1, Math.floor(v * zones));
-      if (index !== activeIndex && index >= 0) { setActiveIndex(index); }
-    });
-  }, [scrollYProgress, activeIndex]);
-
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
-  const smoothTextY = useSpring(textY, { stiffness: 80, damping: 25 });
-
   return (
-    <section id="services" ref={targetRef} className="relative h-[400dvh] bg-black">
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="wait">
-            <motion.div key={SHOWCASE_DATA[activeIndex]?.id || 0} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }} className="absolute inset-0">
-              {SHOWCASE_DATA[activeIndex] && (
-                <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                  <source src={SHOWCASE_DATA[activeIndex].video} type="video/mp4" />
-                </video>
-              )}
-              <div className="absolute inset-0 bg-black/60" />
-            </motion.div>
-          </AnimatePresence>
-        </div>
-        <div className="relative z-10 h-full w-full flex items-center justify-center">
-          <div className="max-w-[1400px] w-full px-6 sm:px-10 lg:px-20 xl:px-24 h-[100dvh] overflow-hidden">
-             <motion.div style={{ y: smoothTextY }} className="flex flex-col h-[300dvh]">
-                {SHOWCASE_DATA.map((item, i) => (
-                  <div key={item.id} className="h-[100dvh] flex flex-col justify-center">
-                    <motion.div 
-                      animate={{ 
-                        opacity: i === activeIndex ? 1 : 0, 
-                        scale: i === activeIndex ? 1 : 0.9,
-                        filter: i === activeIndex ? "blur(0px)" : "blur(10px)",
-                        y: i === activeIndex ? 0 : (i < activeIndex ? -20 : 20)
-                      }} 
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                    >
-                      <h3 className="text-xs md:text-xl font-black text-blue-500 mb-3 tracking-[0.2em]">0{item.id} —</h3>
-                      <h2 className="text-[9vw] sm:text-5xl md:text-[5vw] font-black tracking-tighter leading-[0.9] uppercase mb-4 sm:mb-8 break-words">{item.title}</h2>
-                      <p className="text-sm md:text-xl text-white/60 max-w-md leading-snug font-medium">{item.description}</p>
-                    </motion.div>
-                  </div>
-                ))}
+    <section id="services" className="relative w-full bg-black">
+      {SHOWCASE_DATA.map((item, i) => (
+        <div key={item.id} className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center justify-center">
+          {/* Background Video */}
+          <div className="absolute inset-0 z-0">
+             <video autoPlay muted loop playsInline className="h-full w-full object-cover">
+               <source src={item.video} type="video/mp4" />
+             </video>
+             <div className="absolute inset-0 bg-black/60" />
+          </div>
+          
+          {/* Centered Main Text */}
+          <div className="relative z-10 w-full max-w-[1400px] px-6 sm:px-10 lg:px-20 xl:px-24">
+             <motion.div 
+               initial={{ opacity: 0, y: 30 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: false, amount: 0.5 }}
+               transition={{ duration: 0.8 }}
+             >
+                <h3 className="text-xs md:text-xl font-black text-blue-500 mb-3 tracking-[0.2em] drop-shadow-md">0{item.id} —</h3>
+                <h2 className="text-[9vw] sm:text-5xl md:text-[5vw] font-black tracking-tighter leading-[0.9] uppercase mb-4 sm:mb-8 break-words text-white drop-shadow-2xl">{item.title}</h2>
+                <p className="text-sm md:text-xl text-white/90 max-w-md leading-snug font-medium drop-shadow-md">{item.description}</p>
              </motion.div>
           </div>
-        </div>
-
-        {/* Explore Section at bottom left - Synced with activeIndex */}
-        <div className="absolute bottom-10 left-6 md:bottom-12 md:left-16 z-20 max-w-[calc(100%-48px)] md:max-w-md">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              <h4 className="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-2">Comprehensive Services</h4>
-              <p className="text-white/50 text-[10px] md:text-sm mb-4 md:mb-6 leading-relaxed">
-                We provide an integrated suite of development and infrastructure services designed to bring your digital vision to reality.
-              </p>
-              <a 
-                href="/services"
-                className="group inline-flex items-center gap-3 md:gap-4 px-6 py-3 md:px-8 md:py-4 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 rounded-full text-white font-bold uppercase tracking-widest text-[9px] md:text-xs transition-all hover:scale-105 active:scale-95"
-              >
-                Explore Now
+          
+          {/* Explore Section Overlay */}
+          <div className="absolute bottom-10 left-6 md:bottom-12 md:left-16 z-20 max-w-[calc(100%-48px)] md:max-w-md">
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}>
+              {i === 0 && (
+                <>
+                  <h4 className="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-2 drop-shadow-md">Comprehensive Services</h4>
+                  <p className="text-white/80 text-[10px] md:text-sm mb-4 md:mb-6 leading-relaxed drop-shadow-md">
+                    We provide an integrated suite of development and infrastructure services designed to bring your digital vision to reality.
+                  </p>
+                </>
+              )}
+              {i === 1 && (
+                <>
+                  <h4 className="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-2 drop-shadow-md">Creator Network</h4>
+                  <p className="text-white/80 text-[10px] md:text-sm mb-4 md:mb-6 leading-relaxed drop-shadow-md">
+                    Access our curated network of top-tier creators to produce authentic content that converts.
+                  </p>
+                </>
+              )}
+              {i === 2 && (
+                <>
+                  <h4 className="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-2 drop-shadow-md">Global Reach</h4>
+                  <p className="text-white/80 text-[10px] md:text-sm mb-4 md:mb-6 leading-relaxed drop-shadow-md">
+                    From intimate gatherings to massive scale productions, we handle everything from conception to execution.
+                  </p>
+                </>
+              )}
+              <a href={i === 0 ? "/services" : i === 1 ? "/work" : "#contact"} className="group inline-flex items-center gap-3 md:gap-4 px-6 py-3 md:px-8 md:py-4 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 rounded-full text-white font-bold uppercase tracking-widest text-[9px] md:text-xs transition-all hover:scale-105 active:scale-95">
+                {i === 0 ? "Explore Now" : i === 1 ? "View Case Studies" : "Start a Project"}
                 <svg width="12" height="12" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform group-hover:translate-x-1">
                   <path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
                 </svg>
               </a>
             </motion.div>
-          </AnimatePresence>
+          </div>
         </div>
-
-      </div>
+      ))}
     </section>
   );
 }
@@ -736,7 +710,7 @@ function CareersSection({ onApply }: { onApply: () => void }) {
     <section id="careers" className="relative min-h-[100dvh] w-full bg-black overflow-hidden flex items-center">
       <div className="absolute inset-0 z-0">
         <AutoVideoLoop 
-          videos={[HERO_VIDEOS[3], HERO_VIDEOS[5], HERO_VIDEOS[7], HERO_VIDEOS[2]]} 
+          videos={[HERO_VIDEOS[3], HERO_VIDEOS[1], HERO_VIDEOS[0], HERO_VIDEOS[2]]} 
           interval={1000} 
           opacity={0.4} 
         />
