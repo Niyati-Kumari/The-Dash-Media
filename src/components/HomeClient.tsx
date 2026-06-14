@@ -638,104 +638,69 @@ function AutoVideoLoop({ videos, interval, opacity = 1 }: { videos: string[], in
 }
 
 function VerticalShowcase() {
-  const targetRef = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Slide 0 moves up during the first half of the scroll
-  const y0 = useTransform(scrollYProgress, [0, 0.5], ["0%", "-100%"]);
-  // Slide 1 stays at 0 during the first half, then moves up during the second half
-  const y1 = useTransform(scrollYProgress, [0, 0.5, 1], ["0%", "0%", "-100%"]);
-  // Slide 2 stays at 0 the whole time
-  const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "0%"]);
-
-  const transforms = [y0, y1, y2];
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section ref={targetRef} id="services" style={{ position: "relative", height: "300vh", width: "100%" }}>
-
-      {/* Sticky outer frame — stays pinned. The fallback video ensures NO black ever shows. */}
-      <div style={{ position: "sticky", top: 0, height: "100vh", width: "100%", overflow: "hidden" }}>
-
-        {/* Fallback background so there is ALWAYS something visible — no black gaps ever */}
-        <video
-          autoPlay muted loop playsInline
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }}
-        >
-          <source src={SHOWCASE_DATA[2].video} type="video/mp4" />
-        </video>
-        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.55)", zIndex: 1 }} />
-
-        {/* Stacked Slides */}
+    <section id="services" className="relative w-full bg-black">
+      {/* Sticky Backgrounds */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden z-0">
         {SHOWCASE_DATA.map((item, i) => (
-          <motion.div
+          <div
             key={item.id}
-            style={{ 
-              y: transforms[i], 
-              position: "absolute", 
-              top: 0, 
-              left: 0, 
-              right: 0, 
-              height: "100vh", 
-              zIndex: SHOWCASE_DATA.length - i, 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center" 
+            className="absolute inset-0"
+            style={{
+              opacity: activeIndex === i ? 1 : 0,
+              // Fade out old background (500ms). Wait 400ms before fading in new background (800ms).
+              // This guarantees a pure black screen for a distinct moment during the transition.
+              transition: `opacity ${activeIndex === i ? '800ms' : '500ms'} ease-in-out ${activeIndex === i ? '400ms' : '0ms'}`,
+              zIndex: i + 1,
+              pointerEvents: "none"
             }}
           >
-            {/* Each slide's own full-bleed video */}
             <video
               autoPlay muted loop playsInline
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             >
               <source src={item.video} type="video/mp4" />
             </video>
-            <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 1 }} />
+            <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.5)" }} />
+          </div>
+        ))}
+      </div>
 
-            {/* Main heading */}
-            <div className="relative w-full max-w-[1400px] px-6 sm:px-10 lg:px-20 xl:px-24" style={{ zIndex: 2 }}>
-              <h3 className="text-xs md:text-xl font-black text-blue-400 mb-3 tracking-[0.2em] drop-shadow-md">0{item.id} —</h3>
-              <h2 className="text-[9vw] sm:text-5xl md:text-[5vw] font-black tracking-tighter leading-[0.9] uppercase mb-4 sm:mb-8 break-words text-white drop-shadow-2xl">{item.title}</h2>
-              <p className="text-sm md:text-xl text-white/90 max-w-md leading-snug font-medium drop-shadow-md">{item.description}</p>
-            </div>
+      {/* Normal Scrolling Content (Never stops) */}
+      <div className="relative z-10 -mt-[100vh] w-full flex flex-col">
+        {SHOWCASE_DATA.map((item, i) => (
+          <motion.div 
+            key={item.id} 
+            className="w-full flex flex-col"
+            onViewportEnter={() => setActiveIndex(i)}
+            viewport={{ margin: "-40% 0px -40% 0px" }} // Triggers when the item is in the center 20% of the screen
+          >
+            <div className="h-screen w-full flex items-center justify-center relative">
+              {/* Main heading */}
+              <div className="relative w-full max-w-[1400px] px-6 sm:px-10 lg:px-20 xl:px-24 pointer-events-auto">
+                <h3 className="text-xs md:text-xl font-black text-blue-400 mb-3 tracking-[0.2em] drop-shadow-md">0{item.id} —</h3>
+                <h2 className="text-[9vw] sm:text-5xl md:text-[5vw] font-black tracking-tighter leading-[0.9] uppercase mb-4 sm:mb-8 break-words text-white drop-shadow-2xl">{item.title}</h2>
+                <p className="text-sm md:text-xl text-white/90 max-w-md leading-snug font-medium drop-shadow-md">{item.description}</p>
+              </div>
 
-            {/* Bottom-left CTA */}
-            <div className="absolute bottom-10 left-6 md:bottom-12 md:left-16 max-w-[calc(100%-48px)] md:max-w-md" style={{ zIndex: 2 }}>
-              {i === 0 && (
-                <>
-                  <h4 className="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-2 drop-shadow-md">Comprehensive Services</h4>
-                  <p className="text-white/80 text-[10px] md:text-sm mb-4 md:mb-6 leading-relaxed drop-shadow-md">
-                    We provide an integrated suite of development and infrastructure services designed to bring your digital vision to reality.
-                  </p>
-                </>
-              )}
-              {i === 1 && (
-                <>
-                  <h4 className="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-2 drop-shadow-md">Creator Network</h4>
-                  <p className="text-white/80 text-[10px] md:text-sm mb-4 md:mb-6 leading-relaxed drop-shadow-md">
-                    Access our curated network of top-tier creators to produce authentic content that converts.
-                  </p>
-                </>
-              )}
-              {i === 2 && (
-                <>
-                  <h4 className="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-2 drop-shadow-md">Global Reach</h4>
-                  <p className="text-white/80 text-[10px] md:text-sm mb-4 md:mb-6 leading-relaxed drop-shadow-md">
-                    From intimate gatherings to massive scale productions, we handle everything from conception to execution.
-                  </p>
-                </>
-              )}
-              <a
-                href={i === 0 ? "/services" : i === 1 ? "/work" : "#contact"}
-                className="group inline-flex items-center gap-3 md:gap-4 px-6 py-3 md:px-8 md:py-4 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 rounded-full text-white font-bold uppercase tracking-widest text-[9px] md:text-xs transition-all hover:scale-105 active:scale-95"
-              >
-                {i === 0 ? "Explore Now" : i === 1 ? "View Case Studies" : "Start a Project"}
-                <svg width="12" height="12" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform group-hover:translate-x-1">
-                  <path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" />
-                </svg>
-              </a>
+              {/* Bottom-left CTA */}
+              <div className="absolute bottom-10 left-6 md:bottom-12 md:left-16 max-w-[calc(100%-48px)] md:max-w-md pointer-events-auto">
+                <h4 className="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-2 drop-shadow-md">Comprehensive Services</h4>
+                <p className="text-white/80 text-[10px] md:text-sm mb-4 md:mb-6 leading-relaxed drop-shadow-md">
+                  We provide an integrated suite of development and infrastructure services designed to bring your digital vision to reality.
+                </p>
+                <a
+                  href="/services"
+                  className="group inline-flex items-center gap-3 md:gap-4 px-6 py-3 md:px-8 md:py-4 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 rounded-full text-white font-bold uppercase tracking-widest text-[9px] md:text-xs transition-all hover:scale-105 active:scale-95"
+                >
+                  Explore Now
+                  <svg width="12" height="12" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform group-hover:translate-x-1">
+                    <path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </motion.div>
         ))}
