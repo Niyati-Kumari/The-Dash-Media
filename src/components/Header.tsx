@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,12 +30,14 @@ export default function Header() {
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="relative z-50 cursor-pointer flex items-center gap-4"
+            className="relative z-50 cursor-pointer flex items-center gap-4 h-16 sm:h-20 md:h-[90px] lg:h-[100px] w-[200px]"
           >
-            <img 
+            <Image 
               src="/logo-transparent.png" 
               alt="Dash Media Logo" 
-              className="h-16 sm:h-20 md:h-[90px] lg:h-[100px] w-auto object-contain transition-transform duration-500 hover:scale-105" 
+              fill
+              className="object-contain transition-transform duration-500 hover:scale-105" 
+              sizes="200px"
             />
           </motion.div>
         </Link>

@@ -28,6 +28,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
+      <head>
+        <link rel="preload" href="/youtube-bg.mp4" as="video" type="video/mp4" />
+      </head>
       <body className="min-h-full flex flex-col">
         {children}
         <Chatbot />
