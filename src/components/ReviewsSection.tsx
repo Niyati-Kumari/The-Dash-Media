@@ -8,15 +8,18 @@ export default function ReviewsSection() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const x = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section ref={containerRef} className="relative py-32 bg-black overflow-hidden border-t border-white/5">
+    <section
+      ref={containerRef}
+      className="relative py-32 bg-black overflow-hidden border-t border-white/5"
+    >
       <div className="max-w-[1400px] mx-auto px-8 mb-20">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -24,7 +27,9 @@ export default function ReviewsSection() {
         >
           Voices of Success
         </motion.h2>
-        <p className="text-xl text-white/40 uppercase tracking-widest font-bold">Trusted by Industry Leaders</p>
+        <p className="text-xl text-white/40 uppercase tracking-widest font-bold">
+          Trusted by Industry Leaders
+        </p>
       </div>
 
       <div className="flex overflow-hidden group">
@@ -48,28 +53,34 @@ export default function ReviewsSection() {
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <div className="relative h-6 md:h-8 w-24 md:w-32">
-                    <Image 
-                      src={review.logo} 
-                      alt={review.company} 
+                    <Image
+                      src={review.logo}
+                      alt={review.company}
                       fill
                       sizes="128px"
                       className="object-contain brightness-0 invert opacity-40 group-hover/card:opacity-100 transition-opacity duration-500"
                     />
                   </div>
-                  <span className="text-4xl font-serif text-white/10 group-hover:text-white/20 transition-colors">"</span>
+                  <span className="text-4xl font-serif text-white/10 group-hover:text-white/20 transition-colors">
+                    &ldquo;
+                  </span>
                 </div>
                 <p className="text-lg md:text-xl font-medium leading-relaxed text-white/80 mb-8 italic">
                   {review.content}
                 </p>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-gradient-to-br from-white/20 to-transparent border border-white/10 flex items-center justify-center font-bold text-sm md:text-lg shrink-0">
                   {review.name[0]}
                 </div>
                 <div>
-                  <h4 className="font-bold uppercase tracking-wider text-xs md:text-sm">{review.name}</h4>
-                  <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-tighter">{review.role} — {review.company}</p>
+                  <h4 className="font-bold uppercase tracking-wider text-xs md:text-sm">
+                    {review.name}
+                  </h4>
+                  <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-tighter">
+                    {review.role} — {review.company}
+                  </p>
                 </div>
               </div>
             </div>
@@ -78,7 +89,7 @@ export default function ReviewsSection() {
       </div>
 
       {/* Decorative background element */}
-      <motion.div 
+      <motion.div
         style={{ x }}
         className="absolute top-1/2 left-0 -translate-y-1/2 text-[20vw] font-black text-white/[0.02] pointer-events-none whitespace-nowrap uppercase tracking-tighter"
       >
