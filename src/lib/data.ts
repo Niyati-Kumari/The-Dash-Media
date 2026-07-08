@@ -71,14 +71,16 @@ export const SHOWCASE_DATA = [
 ];
 
 export const BRANDS = [
-  { name: "PURBI", logo: "/brands/1.png" },
-  { name: "IMEDI.HEALTH", logo: "/brands/2.png" },
-  { name: "Thrive", logo: "/brands/thrive_final.png" },
-  { name: "AP Talent", logo: "/brands/5.png" },
-  { name: "Brand 6", logo: "/brands/ap_talent.png" },
-  { name: "Brand 7", logo: "/brands/imedi_health.png" },
-  { name: "Brand 9", logo: "/brands/purbi.png" },
-  { name: "Brand 10", logo: "/brands/thrive_final.png" },
+  { name: "Healthcare 24hr", logo: "/brands/healthcare_24hr.png" },
+  { name: "INAYAS", logo: "/brands/inayas.png" },
+  { name: "LATCHANAM", logo: "/brands/latchanam.png" },
+  { name: "Arikas", logo: "/brands/arikas.png" },
+  { name: "OMEL", logo: "/brands/omel.png" },
+  { name: "Pickleberry", logo: "/brands/pickleberry.png" },
+  { name: "Thrive", logo: "/brands/thrive.png" },
+  { name: "AP Talent", logo: "/brands/ap_talent.png" },
+  { name: "IMEDI.HEALTH", logo: "/brands/imedi_health.png" },
+  { name: "PURBI", logo: "/brands/purbi.png" },
 ];
 
 export const REVIEWS = [
@@ -104,7 +106,7 @@ export const REVIEWS = [
     company: "Thrive",
     content:
       "Minimalist, powerful, and effective. The motion design and attention to detail they provided is exactly what our high-growth team needed.",
-    logo: "/brands/thrive_final.png",
+    logo: "/brands/thrive.png",
   },
   {
     name: "Aisha Vance",
@@ -115,11 +117,19 @@ export const REVIEWS = [
     logo: "/brands/ap_talent.png",
   },
   {
+    name: "Priya Sharma",
+    role: "Creative Lead",
+    company: "Pickleberry",
+    content:
+      "Capturing the soul of a homegrown brand while giving it a world-class edge is a tough balance. Printdash nailed it perfectly.",
+    logo: "/brands/pickleberry.png",
+  },
+  {
     name: "Thomas Wright",
     role: "Global Strategy",
     company: "Healthcare 24hr",
     content:
       "The most professional and creative team we've worked with. Their cinematic approach to digital storytelling is truly unique.",
-    logo: "/brands/healthcare.png",
+    logo: "/brands/healthcare_24hr.png",
   },
 ];
